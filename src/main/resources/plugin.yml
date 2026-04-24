@@ -1,0 +1,20 @@
+name: HardMob
+version: 2.0.0
+main: core.mrcatcraft.HardMob
+api-version: 1.21
+author: Mr_Catcraft
+description: RPG-style mob leveling and elite bosses
+commands:
+  hardmob:
+    description: Main HardMob command
+    usage: /hardmob <reload|spawn|spawnboss>
+permissions:
+  hardmob.reload:
+    description: Reload configuration
+    default: op
+  hardmob.spawn:
+    description: Spawn a custom level mob
+    default: op
+  hardmob.spawnboss:
+    description: Spawn an elite boss
+    default: op

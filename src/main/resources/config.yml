@@ -1,0 +1,101 @@
+# HardMob Configuration
+# All settings are explained in README.md or directly below.
+general:
+  # Master switch: if false, the plugin does nothing.
+  enabled: true
+
+level_system:
+  enabled: true
+  # Formula for max level: maxLevel = A - B * exp(-days / C)
+  formula:
+    A: 99.0               # max level after infinite days
+    B: 98.0               # level difference at day 0
+    C: 40.0               # days to reach ~63% of max
+  # Level distribution within the allowed range:
+  # uniform         – all levels equally likely
+  # weighted_low    – lower levels more common
+  # weighted_high   – higher levels more common
+  distribution: uniform
+  scaling:
+    # Per-level increase in percent (applied after base value)
+    health_percent_per_level: 2.0
+    damage_percent_per_level: 1.5
+    speed_percent_per_level: 0.3
+    # Knockback resistance added per level (0.0 - 1.0 scale)
+    knockback_resist_per_level: 0.01
+  equipment:
+    # Key = level threshold, value = equipment tier name
+    # Mobs at or above the threshold receive that tier.
+    thresholds:
+      20: chainmail
+      40: iron
+      60: diamond
+      80: netherite
+    enchant_multiplier: 0.2   # enchantment level = floor(level * multiplier)
+  potion_effects:
+    # Percentage chance per level to receive a random buff (0.5 = 0.5%)
+    chance_per_level: 0.5
+    # Duration = 60 seconds * (1 + level * multiplier / 10)
+    duration_multiplier: 1.0
+    amplifier_base: 0
+    max_duration_seconds: 600   # cap to prevent excessively long effects
+
+elite_mobs:
+  enabled: true
+  spawn_chance_percent: 0.5     # 0.5% chance for a mob to be elite
+  health_multiplier: 2.0
+  damage_multiplier: 2.0
+  speed_multiplier: 0.7
+  size: 2.0                     # fixed size for elite mobs
+  always_equipped: true         # if true, elites wear full armor according to level
+  drops:
+    diamonds:
+      min: 0
+      max: 4
+    gold:
+      min: 0
+      max: 20
+    music_discs:
+      - MUSIC_DISC_13
+      - MUSIC_DISC_CAT
+      - MUSIC_DISC_BLOCKS
+      - MUSIC_DISC_CHIRP
+      - MUSIC_DISC_FAR
+      - MUSIC_DISC_MALL
+      - MUSIC_DISC_MELLOHI
+      - MUSIC_DISC_STAL
+      - MUSIC_DISC_STRAD
+      - MUSIC_DISC_WARD
+      - MUSIC_DISC_11
+      - MUSIC_DISC_WAIT
+    exp_per_level: 10           # bonus experience per mob level
+
+visual:
+  dynamic_size:
+    enabled: true
+    min: 0.8
+    max: 1.2
+  custom_name:
+    enabled: true
+    # If false, name appears only when the player hovers over the mob
+    visible: false
+    # Placeholders: %health%, %max_health%, %name%, %level% (only for normal mobs)
+    format: "&8[&c%health%&8/&c%max_health%&8] &f%name% &8[&6%level% lvl&8]"
+    # Placeholders: %health%, %max_health%, %name%, %boss%
+    format_boss: "&8[&c%health%&8/&c%max_health%&8] &f%name% &8[&4BOSS&8]"
+    colors:
+      low_level: "GREEN"
+      medium_level: "YELLOW"
+      high_level: "RED"
+      boss: "DARK_RED"
+
+# Worlds where the plugin should be completely disabled.
+world_blacklist:
+  - "world_the_end"
+
+# List of mob types (entity type names) that the plugin should affect.
+# An empty list means ALL mobs (except players) are allowed.
+mob_whitelist: []
+
+# Enables detailed logging to console (for debugging purposes).
+debug_mode: false
